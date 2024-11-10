@@ -23,5 +23,3 @@ eval  $(ssh-agent -s)
 ```bash
 ssh-add id_rsa
 ```
-
-4. 
