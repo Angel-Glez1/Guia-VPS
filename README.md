@@ -7,7 +7,7 @@ Nada del otro mundo, creas el VPS eliges los componentes que necesite tu servido
 * > **NOTA**: Dependiendo el metodo que selecciones para autenticar al usuario ROOT ese mismo se va a compartir con todos los nuevos usuarios que agreges a lo largo del tiempo. (En el punto 4.1 viene como autenticar usuario por medio de ssh de forma mas facil)
 
 
-## 2. **Acceder al servidor**
+## **2. Acceder al servidor**
 > Asegurate de tener instalado el paquete ssh en el equipo donde vas a conectarte
 ```bash
 # Acceder por contraseña (Cuando le des enter te va a perdir la contraseña)
@@ -20,7 +20,7 @@ ssh root@127.0.0.1 -i c:/user/.ssh/private_key_ssh
 * La opción **-i** indica la ubicacion de la llave privada para que pueda acceder al servidor ( Recuerda que la llave publica se subio a digital ocean )
 
 
-## 3. **Actualizar paquetes del sistema**
+## **3. Actualizar paquetes del sistema**
 Cuando accedes por primera vez al VPS tienes que actualizar los paquetes del sistema con los siguientes comando.
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -30,7 +30,7 @@ sudo apt update && sudo apt upgrade -y
 * La opción **-y** en **upgrade** responde automáticamente "yes" a cualquier solicitud de confirmación, para que el proceso sea más rápido.
 
 
-## 4. **Crear un usuario con permisos SUDO**
+## **4. Crear un usuario con permisos SUDO**
 Por seguridad y buenas practicas se recomienda crear un nuevo usuario que pertenezca al grupo de sudo.
 Con la finalidad de tener a este super usuario y poder deshabilitar el usuario ROOT mas adelante para agregar una capa de seguridad extra. Todavia no deshabilites el usuario root, hasta que tengas otro usuario con los mismos privilegios y puedas acceder al VPS sin problema
 
@@ -46,7 +46,7 @@ adduser uAngel sudo
 * La directiva **sudo** que se agrega al final, es para indicar que ese usuario pertenece al grupo sudo, que le otorga los mismos poderes que el usuario *ROOT*
 
 
-## 4.1 **Acceder con nuevos usuarios por medio de llaves SSH**
+## **4.1 Acceder con nuevos usuarios por medio de llaves SSH**
 Si, seleccionaste el metodo de ssh al momento de crear el servidor. Estas son las instrucciones para iniciar sesion en el VPS por medio de ssh de forma mas eficiente
 
 1. Generar las llaves ssh en tu maquina/compu/cliente/loquesa. Con el siguiente comando:
@@ -107,3 +107,36 @@ ssh uAngel@127.0.0.1 -i c:/user/.ssh/private_key_ssh
 # Ahora
 ssh my_server_uAngel
 ```
+
+## **5. Deshabilitar el usuario ROOT**
+Para mayor seguridad hay que deshabilitar el login con el usuario root. PERO es importante que previamente exista otro usuario que tenga los
+mismos privilegios que el ROOT ( como se muestra en el punto 4.1 )
+
+1. Navega al servicio de ssh
+```bash
+cd /etc/shh
+```
+
+2. Abre el archivo **sshd_config** 
+```bash
+sudo nano sshd_config
+```
+
+3. Busca la directiva **PermitRootLogin**
+```bash
+PermitRootLogin on  #on significa que si puedes inciar sesion con el root
+```
+
+3. Deshabilita el poder hacer login con el root
+```bash
+PermitRootLogin off 
+```
+
+4. Guardar el archivo y recarga el servicio de ssh
+```bash
+sudo systemctl reload ssh.service
+```
+
+5. Verifica si puedes hacer login con el usuario ROOT
+
+> NOTA: Solo deshabilitamos el login del usuario root, pero sigue existiendo si necistas hacer algo son el usuario root solo escribe en la consola ``` sudo su ``` y con eso vas a poder usar al usuario root
