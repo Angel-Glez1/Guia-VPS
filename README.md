@@ -112,7 +112,7 @@ ssh my_server_uAngel
 Para mayor seguridad hay que deshabilitar el login con el usuario root. PERO es importante que previamente exista otro usuario que tenga los
 mismos privilegios que el ROOT ( como se muestra en el punto 4.1 )
 
-1. Navega al servicio de ssh
+1.  Inicia sesion con un usurio que tenga permisos root y nagecha servicio de ssh
 ```bash
 cd /etc/shh
 ```
@@ -140,3 +140,74 @@ sudo systemctl reload ssh.service
 5. Verifica si puedes hacer login con el usuario ROOT
 
 > NOTA: Solo deshabilitamos el login del usuario root, pero sigue existiendo si necistas hacer algo son el usuario root solo escribe en la consola ``` sudo su ``` y con eso vas a poder usar al usuario root
+
+
+
+## **6. UFW**
+Es Ufw sirve para trafico que trafico que entra a nuestro servidor
+**NOTA**: Antes de actividad el ufw, ya que por defecto esta desabilidato tenemos que, permitir las conexiones SSH para que de esta forma no te saque de la instacia actual y pierdas el acceso a tu servidor :C 
+
+
+1. Verificar que uft esta inactivado
+```bash
+sudo ufw status
+```
+
+2. Ver si en la lista de aplicaciones esta OpenSSH
+```bash
+sudo ufw app list
+```
+
+3. Tenemos que permitir conexiones por medio de ssh
+```bash
+sudo ufw allow "OpenSSH"
+```
+> **NOTA**: En punto numero **3** es super importante ya que si no permitimos las conexiones por medio de ssh, nos va a cerrar la instacia actual y vamos a perder el acceso al servidor
+
+
+4. Activar el UFW
+```bash
+sudo ufw enable
+```
+
+
+## **7. Fail2Ban**
+Bloque IP que intentan entrar a la fuerza
+
+
+1. Instalación
+```bash
+sudo apt update && sudo apt install fail2ban
+```
+
+2. Configurar fail2ban, navega al la caperta donde se instalo fail2ban
+```bash
+cd /etc/fail2ban
+```
+
+3. Tenemos que crear nuestro propio archivo de configuración
+```bash
+sudo nano jail.local
+```
+* Se le pone el nombre de jail. por convencion
+* Y el .local es para que lo tome como archivo principal de configuracion
+
+4. Ingresa este contenido el archivo
+```bash
+[DEFAULT]
+bantime = 3h #
+maxretry = 3
+
+
+[sshd]
+enabled = true # Monitorea las conexiones ssh y bloque el acceso a todas a quellas se pasen el limite de intento pemritido
+```
+
+5. Recargar el servicio de fail2ban para que tome las nuevas configuraciones
+```bash
+# Verifica el status primero
+sudo fail2ban-client status 
+
+# Recarga el servicio de fail2ban 
+sudo systemctl restart fail2ban.service
+```
