@@ -4,13 +4,10 @@
 ```bash
 # Acceso por contraseña (te pedirá la contraseña al presionar Enter)
 ssh root@127.0.0.1
-```
-```bash
-# Acceso por SSH
-ssh root@127.0.0.1 -i c:/user/.ssh/private_key_ssh # Para configurar las llaves ssh ver el archivo ssh/connect-to-vps-by-ssh.md
-```
-* La opción **-i** indica la ubicación de la clave privada para acceder al servidor (recuerda que la clave pública se subió a Digital Ocean).
 
+# Acceso por SSH
+ssh root@127.0.0.1 -i c:/user/.ssh/private_key_ssh # Mas información en ssh/connect-to-vps-by-ssh.md
+```
 
 ## **2. Actualizar paquetes del sistema**
 Actualiza los paquetes del sistema al acceder por primera vez al VPS.

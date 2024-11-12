@@ -18,6 +18,9 @@ cat ids.txt
 
 3. Mover archivo
 ```bash
+cp -r <nombre_archivo> <destino>
+
+# Ejemplo
 mv ids.txt ./docs/ # Mover con el mismo nombre
 mv ids.txt ./docs/new.ids.txt # Mover y cambiar el nombre
 ```
@@ -25,6 +28,9 @@ mv ids.txt ./docs/new.ids.txt # Mover y cambiar el nombre
 
 4. Copear archivo
 ```bash
+cp -r <nombre_archivo> <destino>
+
+# Ejemplo
 cp ids.txt ./docs/copy.ids.text # cambiar el nombre
 cp ids.txt ./docs/ # dejar el mismo nombre
 ```
@@ -35,7 +41,6 @@ rm ids.txt
 ```
 
 # Gestión de carpetas (crear, eliminar, mover, mostrar)
-
 1. Crear
 ```bash
 mkdor projects
@@ -49,13 +54,17 @@ ls
 
 3. Mover ó cambiar el nombre
 ```bash
+mv <nombre_carpeta> <destino>
+# Ejemplo
 mv projects ../docs/ # mover con el mismos nombre 
 mv projects ../docs/old_projects # mover y cambiar el nombre 
 ```
 
-
 4. Copear archivo
 ```bash
+cp -r <nombre_carpte> <destino>
+
+# Ejemplo
 cp -r ./projects ./docs/projects_backup 
 ```
 
