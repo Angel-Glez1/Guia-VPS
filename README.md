@@ -25,10 +25,10 @@ Por seguridad, es recomendable crear un nuevo usuario con permisos `sudo` y desh
 adduser user_angel
 
 # 2 Darle permisos sudo 
-usermod -aG sudo user_angel # Esto asigna al usuario `user_angel` al grupo `sudo`, dándole los mismos privilegios que `root`.
+usermod -aG sudo user_angel # Esto asigna al usuario `user_angel` al grupo `sudo`, dándole los mismos privilegios que `root`.F
 ```
 
-## **4 Acceder con nuevos usuarios mediante llaves SSH**
+## **4. Acceder con nuevos usuarios mediante llaves SSH**
 Sigue estos pasos para configurar el acceso mediante llaves ssh:
 
 1. Genera las llaves SSH en tu máquina:
