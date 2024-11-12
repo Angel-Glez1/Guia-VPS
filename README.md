@@ -80,27 +80,27 @@ Sigue estos pasos para configurar el acceso mediante llaves ssh:
    ```
 
 ## **5. Deshabilitar el usuario ROOT**
-Inicia sesión con un usuario con permisos `sudo` y navega a la configuración de SSH:
-```bash
-cd /etc/ssh
-sudo nano sshd_config
-```
+1. Inicia sesión con un usuario con permisos `sudo` y navega a la configuración de SSH:
+   ```bash
+   cd /etc/ssh
+   sudo nano sshd_config
+   ```
 
-Busca y modifica:
-```bash
-PermitRootLogin off  # Deshabilitar inicio de sesión con root
-```
+2. Busca y modifica:
+   ```bash
+   PermitRootLogin off  # Deshabilitar inicio de sesión con root
+   ```
 
-Guarda y recarga SSH:
-```bash
-sudo systemctl reload ssh.service
-```
+3. Guarda y recarga SSH:
+   ```bash
+   sudo systemctl reload ssh.service
+   ```
 
-Verifica el acceso de `root`:
-```bash
-# Comprobar si el usuario root está deshabilitado
-sudo su
-```
+4. Verifica el acceso de `root`:
+   ```bash
+   # Comprobar si el usuario root está deshabilitado
+   sudo su
+   ```
 
 ## **6. UFW (Firewall)**
 Configura UFW para proteger el tráfico entrante.
