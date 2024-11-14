@@ -5,12 +5,12 @@ Al igual que en un ambiente local (computadora, laptop, etc), se puede configura
 llaves ssh para que nuestro sistema se pueda autenticar a otros servidores o servicios que ocupen esto.
 Ejemplo: github 
 
+> Nota: **Este proceso se tiene que hacer con el usario root, si tienes deshabilitado el login con root, puedes usar el siguiente comando para entrar en modo superusuario `sudo su` y para salir del modo superusuario solo ocupa `exit`)**
 
-Para hacer esta configuracion hay que correr los siguientes comandos.
 
 1. Generar las llaves ssh
 ```bash
-ssh-keygen -t rsa -b 4096 -C "tu_correo@ejemplo.com"
+ssh-keygen -t rsa -b 4096
 ```
 
 2. Hay que permitir que nuestras llaves ssh se puedan contectar con los sistemas externos
@@ -23,3 +23,5 @@ eval  $(ssh-agent -s)
 ```bash
 ssh-add id_rsa
 ```
+
+4. Copea el contenido de la llave publica y pegala en el sistema donde te queires autenticar por ssh
